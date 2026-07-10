@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bankruptcy Risk Command Center</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Financial Distress Intelligence</p>
+        <h1>Bankruptcy Risk Command Center</h1>
+      </div>
+      <div class="status" id="status">Loading report</div>
+    </header>
+
+    <main>
+      <section class="metric-grid" id="metrics"></section>
+
+      <section class="predictor panel">
+        <div class="panel-header">
+          <div>
+            <h2>Live Company Scoring</h2>
+            <span>Upload a CSV with the 95 feature columns or use the generated template</span>
+          </div>
+          <div class="actions">
+            <button id="sampleBtn" type="button">Load Sample</button>
+            <button id="driftBtn" type="button">Check Drift</button>
+            <button id="downloadBtn" type="button">Download CSV</button>
+            <label class="upload">
+              Upload CSV
+              <input id="csvInput" type="file" accept=".csv,text/csv">
+            </label>
+          </div>
+        </div>
+        <div class="prediction-summary" id="predictionSummary">
+          <span>Ready for scoring</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Probability</th>
+                <th>Risk</th>
+                <th>Prediction</th>
+              </tr>
+            </thead>
+            <tbody id="predictions"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="predictor panel">
+        <div class="panel-header">
+          <div>
+            <h2>Data Drift Watch</h2>
+            <span id="driftStatus">Load sample or upload a CSV to compare against training baseline</span>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Status</th>
+                <th>Z Shift</th>
+                <th>Out of Range</th>
+              </tr>
+            </thead>
+            <tbody id="drift"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="layout">
+        <article class="panel">
+          <div class="panel-header">
+            <h2>Model Leaderboard</h2>
+            <span id="selectedModel"></span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Avg Precision</th>
+                  <th>Recall</th>
+                  <th>ROC-AUC</th>
+                  <th>Balanced Acc.</th>
+                </tr>
+              </thead>
+              <tbody id="leaderboard"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <h2>Confusion Matrix</h2>
+            <span>Threshold tuned for recall</span>
+          </div>
+          <div class="matrix" id="matrix"></div>
+        </article>
+      </section>
+
+      <section class="layout">
+        <article class="panel">
+          <div class="panel-header">
+            <h2>Top Model Drivers</h2>
+            <span>Native importance</span>
+          </div>
+          <div id="importance" class="bars"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <h2>Dataset Profile</h2>
+            <span id="generatedAt"></span>
+          </div>
+          <div class="profile" id="profile"></div>
+        </article>
+      </section>
+
+      <section class="layout">
+        <article class="panel">
+          <div class="panel-header">
+            <h2>Operations Monitor</h2>
+            <span id="auditStatus">Awaiting audit data</span>
+          </div>
+          <div class="profile" id="audit"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <h2>API Contract</h2>
+            <span id="schemaStatus">Schema loading</span>
+          </div>
+          <div class="profile" id="schema"></div>
+        </article>
+      </section>
+    </main>
+
+    <script src="dashboard.js"></script>
+  </body>
+</html>

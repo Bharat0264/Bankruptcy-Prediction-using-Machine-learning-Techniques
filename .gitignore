@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.codexgit/
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+Bankruptcy Prediction.zip
+reports/predictions*.csv
+reports/prediction_audit.jsonl
+reports/server_*.log

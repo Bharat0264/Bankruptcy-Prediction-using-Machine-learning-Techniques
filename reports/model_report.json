@@ -1,0 +1,175 @@
+{
+  "generated_at": "2026-07-10T15:53:06.639183+00:00",
+  "selected_model": "XGBoost",
+  "selected_metrics": {
+    "accuracy": 0.9039589442815249,
+    "balanced_accuracy": 0.8185606060606061,
+    "precision": 0.2119205298013245,
+    "recall": 0.7272727272727273,
+    "f1": 0.3282051282051282,
+    "roc_auc": 0.946849173553719,
+    "average_precision": 0.5049990074012045,
+    "threshold": 0.14999999999999997,
+    "true_negative": 1201,
+    "false_positive": 119,
+    "false_negative": 12,
+    "true_positive": 32
+  },
+  "dataset_profile": {
+    "rows": 6819,
+    "columns": 96,
+    "features": 95,
+    "missing_values": 0,
+    "duplicate_rows": 0,
+    "class_counts": {
+      "0": 6599,
+      "1": 220
+    },
+    "bankruptcy_rate": 0.03226279513125092
+  },
+  "leaderboard": [
+    {
+      "model": "XGBoost",
+      "accuracy": 0.9039589442815249,
+      "balanced_accuracy": 0.8185606060606061,
+      "precision": 0.2119205298013245,
+      "recall": 0.7272727272727273,
+      "f1": 0.3282051282051282,
+      "roc_auc": 0.946849173553719,
+      "average_precision": 0.5049990074012045,
+      "threshold": 0.14999999999999997,
+      "true_negative": 1201,
+      "false_positive": 119,
+      "false_negative": 12,
+      "true_positive": 32
+    },
+    {
+      "model": "Random Forest",
+      "accuracy": 0.9523460410557185,
+      "balanced_accuracy": 0.8545454545454545,
+      "precision": 0.3793103448275862,
+      "recall": 0.75,
+      "f1": 0.5038167938931297,
+      "roc_auc": 0.9436983471074379,
+      "average_precision": 0.4862499936815159,
+      "threshold": 0.4649999999999999,
+      "true_negative": 1266,
+      "false_positive": 54,
+      "false_negative": 11,
+      "true_positive": 33
+    },
+    {
+      "model": "Gradient Boosting",
+      "accuracy": 0.9193548387096774,
+      "balanced_accuracy": 0.8265151515151515,
+      "precision": 0.24615384615384617,
+      "recall": 0.7272727272727273,
+      "f1": 0.367816091954023,
+      "roc_auc": 0.9324552341597797,
+      "average_precision": 0.4424676596782776,
+      "threshold": 0.35999999999999993,
+      "true_negative": 1222,
+      "false_positive": 98,
+      "false_negative": 12,
+      "true_positive": 32
+    },
+    {
+      "model": "Logistic Regression",
+      "accuracy": 0.905425219941349,
+      "balanced_accuracy": 0.8193181818181818,
+      "precision": 0.21476510067114093,
+      "recall": 0.7272727272727273,
+      "f1": 0.3316062176165803,
+      "roc_auc": 0.8696453168044077,
+      "average_precision": 0.28991648264811704,
+      "threshold": 0.5249999999999999,
+      "true_negative": 1203,
+      "false_positive": 117,
+      "false_negative": 12,
+      "true_positive": 32
+    }
+  ],
+  "feature_importance": [
+    {
+      "feature": "Continuous interest rate (after tax)",
+      "importance": 0.26229622960090637
+    },
+    {
+      "feature": "Retained Earnings to Total Assets",
+      "importance": 0.06008263677358627
+    },
+    {
+      "feature": "Borrowing dependency",
+      "importance": 0.045133091509342194
+    },
+    {
+      "feature": "Liability to Equity",
+      "importance": 0.043546974658966064
+    },
+    {
+      "feature": "Debt ratio %",
+      "importance": 0.03620196133852005
+    },
+    {
+      "feature": "Net worth/Assets",
+      "importance": 0.03426814079284668
+    },
+    {
+      "feature": "Net Income to Total Assets",
+      "importance": 0.02548242174088955
+    },
+    {
+      "feature": "ROA(C) before interest and depreciation before interest",
+      "importance": 0.016846610233187675
+    },
+    {
+      "feature": "Non-industry income and expenditure/revenue",
+      "importance": 0.015462704934179783
+    },
+    {
+      "feature": "ROA(B) before interest and depreciation after tax",
+      "importance": 0.014024700969457626
+    },
+    {
+      "feature": "Persistent EPS in the Last Four Seasons",
+      "importance": 0.01276205014437437
+    },
+    {
+      "feature": "Current Liabilities/Equity",
+      "importance": 0.012313710525631905
+    },
+    {
+      "feature": "Current Liability to Assets",
+      "importance": 0.011801429092884064
+    },
+    {
+      "feature": "Net Income to Stockholder's Equity",
+      "importance": 0.011643514968454838
+    },
+    {
+      "feature": "Net Value Per Share (C)",
+      "importance": 0.010554800741374493
+    },
+    {
+      "feature": "Contingent liabilities/Net worth",
+      "importance": 0.010498571209609509
+    },
+    {
+      "feature": "Cash Turnover Rate",
+      "importance": 0.010419259779155254
+    },
+    {
+      "feature": "Equity to Long-term Liability",
+      "importance": 0.009022638201713562
+    },
+    {
+      "feature": "Interest Expense Ratio",
+      "importance": 0.008978228084743023
+    },
+    {
+      "feature": "Inventory/Working Capital",
+      "importance": 0.008839261718094349
+    }
+  ],
+  "permutation_importance": []
+}

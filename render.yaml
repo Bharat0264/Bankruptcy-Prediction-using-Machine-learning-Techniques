@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: bankruptcy-risk-platform
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt && PYTHONPATH=src python -m bankruptcy_prediction.train --quick
+    startCommand: PYTHONPATH=src python start.py
+    envVars:
+      - key: PYTHONPATH
+        value: src
+      - key: QUIET_SERVER_LOGS
+        value: "1"

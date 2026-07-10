@@ -1,0 +1,16 @@
+[project]
+name = "bankruptcy-prediction"
+version = "2.0.0"
+description = "Production-style bankruptcy risk modeling pipeline and dashboard."
+requires-python = ">=3.11"
+dependencies = [
+  "pandas>=2.3",
+  "numpy>=2.3",
+  "scikit-learn>=1.7",
+  "imbalanced-learn>=0.13",
+  "xgboost>=3.0",
+  "joblib>=1.5",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

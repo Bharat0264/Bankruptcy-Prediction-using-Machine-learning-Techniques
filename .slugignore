@@ -1,0 +1,8 @@
+venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+Bankruptcy Prediction.zip
+ML Project Final.ipynb
+reports/prediction_audit.jsonl
+reports/server_*.log
