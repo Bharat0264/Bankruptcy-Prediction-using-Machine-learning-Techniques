@@ -11,6 +11,7 @@ This project has been upgraded from a notebook-only ML experiment into a deploya
 - a production HTTP server with `/api/health`, `/api/report`, `/api/sample`, and `/api/predict`
 - schema validation, upload limits, numeric input checks, and prediction audit logging
 - drift monitoring against the training baseline and downloadable scoring CSVs
+- a flexible "Any Company CSV" analyzer for sales/accounting-style files when the strict model schema is unavailable
 - model governance docs, API docs, runbook, and CI workflow
 - Render, Vercel, Docker, and Procfile deployment assets
 - unit tests for dataset and inference contracts
@@ -68,6 +69,35 @@ http://127.0.0.1:8000
 
 The dashboard includes model metrics, a leaderboard, feature drivers, dataset profile, sample scoring, and CSV upload scoring.
 
+## Analyze Any Company CSV
+
+The trained bankruptcy model still needs the 95-column financial schema. For ordinary company data, use the dashboard's **Any Company CSV Analyzer** or call:
+
+```text
+POST /api/analyze-any
+```
+
+This accepts common company CSVs with columns such as:
+
+- `sales`
+- `revenue`
+- `profit`
+- `expense`
+- `cash`
+- `debt`
+- `assets`
+- `liabilities`
+- `date`
+- `customers`
+
+Example:
+
+```powershell
+curl.exe -F "file=@data/sales_sample.csv" http://127.0.0.1:8000/api/analyze-any
+```
+
+It returns a best-effort risk score, confidence level, detected metrics, and recommendations. This is not the same as the trained bankruptcy model; it is a flexible business-health estimate for messy real-world CSVs.
+
 ## Industry-Level Operations
 
 The app now includes production-facing safeguards:
@@ -77,6 +107,7 @@ The app now includes production-facing safeguards:
 - `/api/model-card` exposes model purpose, metrics, limitations, and monitoring recommendations
 - `/api/drift` compares incoming scoring batches against the training baseline
 - `/api/predict.csv` exports scored rows as CSV
+- `/api/analyze-any` analyzes general company CSVs when the strict bankruptcy schema is not available
 - request size and row count limits protect the API from oversized uploads
 - input validation rejects missing, non-numeric, missing-value, and infinite-value records
 - `.github/workflows/ci.yml` trains a quick artifact, runs tests, and compiles the app on every push

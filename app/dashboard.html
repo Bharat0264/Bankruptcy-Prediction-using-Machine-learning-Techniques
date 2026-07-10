@@ -21,8 +21,8 @@
       <section class="predictor panel">
         <div class="panel-header">
           <div>
-            <h2>Live Company Scoring</h2>
-            <span>Upload a CSV with the 95 feature columns or use the generated template</span>
+            <h2>Bankruptcy Model Scoring</h2>
+            <span>Use the 95-column financial schema for trained bankruptcy predictions</span>
           </div>
           <div class="actions">
             <button id="sampleBtn" type="button">Load Sample</button>
@@ -50,6 +50,27 @@
             <tbody id="predictions"></tbody>
           </table>
         </div>
+      </section>
+
+      <section class="predictor panel">
+        <div class="panel-header">
+          <div>
+            <h2>Any Company CSV Analyzer</h2>
+            <span>Use sales, accounting, cash-flow, debt, customer, or mixed company data for best-effort risk analysis</span>
+          </div>
+          <div class="actions">
+            <button id="anyAnalyzeBtn" type="button">Analyze Current CSV</button>
+            <label class="upload">
+              Upload Any CSV
+              <input id="anyCsvInput" type="file" accept=".csv,text/csv">
+            </label>
+          </div>
+        </div>
+        <div class="prediction-summary" id="anySummary">
+          <span>Ready for general company analysis</span>
+        </div>
+        <div class="profile" id="anyMetrics"></div>
+        <div class="recommendations" id="anyRecommendations"></div>
       </section>
 
       <section class="predictor panel">

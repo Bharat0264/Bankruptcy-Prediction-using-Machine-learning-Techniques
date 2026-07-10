@@ -170,6 +170,23 @@ function renderDrift(payload) {
     .join("");
 }
 
+function renderAnyAnalysis(payload) {
+  document.getElementById("anySummary").innerHTML =
+    `<span>${payload.risk_label} risk estimate with ${payload.confidence} confidence. Score: ${pct.format(payload.risk_score)}</span>`;
+  profileItems(
+    "anyMetrics",
+    payload.metrics.map((item) => [
+      item.label,
+      typeof item.value === "number" && Math.abs(item.value) <= 2 ? fmt.format(item.value) : fmt.format(item.value),
+    ])
+  );
+  document.getElementById("anyRecommendations").innerHTML = `
+    <ul>
+      ${payload.recommendations.map((item) => `<li>${item}</li>`).join("")}
+    </ul>
+  `;
+}
+
 async function scoreRows(rows) {
   activeRows = rows;
   activeFile = null;
@@ -203,6 +220,27 @@ async function uploadCsv(file) {
   if (!response.ok) throw new Error(payload.error || "Prediction failed");
   renderPredictions(payload);
   renderOps().catch(() => {});
+}
+
+async function analyzeAnyCompanyData(file = null) {
+  document.getElementById("anySummary").innerHTML = "<span>Analyzing company data</span>";
+  let response;
+  if (file || activeFile) {
+    const form = new FormData();
+    form.append("file", file || activeFile);
+    response = await fetch(`${apiBase}/api/analyze-any`, { method: "POST", body: form });
+  } else if (activeRows.length) {
+    response = await fetch(`${apiBase}/api/analyze-any`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ rows: activeRows }),
+    });
+  } else {
+    throw new Error("Upload a company CSV first.");
+  }
+  const payload = await response.json();
+  if (!response.ok) throw new Error(payload.error || "Analysis failed");
+  renderAnyAnalysis(payload);
 }
 
 async function checkDrift() {
@@ -279,6 +317,22 @@ document.getElementById("csvInput").addEventListener("change", (event) => {
   if (!file) return;
   uploadCsv(file).catch((error) => {
     document.getElementById("predictionSummary").innerHTML = `<span>${error.message}</span>`;
+  });
+});
+
+document.getElementById("anyAnalyzeBtn").addEventListener("click", () => {
+  analyzeAnyCompanyData().catch((error) => {
+    document.getElementById("anySummary").innerHTML = `<span>${error.message}</span>`;
+  });
+});
+
+document.getElementById("anyCsvInput").addEventListener("change", (event) => {
+  const [file] = event.target.files;
+  if (!file) return;
+  activeFile = file;
+  activeRows = [];
+  analyzeAnyCompanyData(file).catch((error) => {
+    document.getElementById("anySummary").innerHTML = `<span>${error.message}</span>`;
   });
 });
 

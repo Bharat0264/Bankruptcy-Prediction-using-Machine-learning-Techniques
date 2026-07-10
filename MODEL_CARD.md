@@ -33,10 +33,13 @@ The training pipeline compares multiple candidate models and selects the best mo
 - Health, schema, report, and audit API endpoints
 - Drift baseline checks for incoming scoring batches
 - Downloadable CSV scoring output for analyst review
+- Flexible business-health analysis for general company CSVs when trained-model inputs are unavailable
 
 ## Limitations
 
 The dataset is highly imbalanced and may not represent every market, region, time period, company size, or accounting regime. Model outputs are probabilities from historical patterns, not guarantees of bankruptcy.
+
+The generic CSV analyzer is heuristic and should be treated as a business-health screening layer. It is useful for sales or accounting CSVs, but its confidence depends on the available columns and it is not a substitute for the trained 95-feature bankruptcy model.
 
 ## Monitoring Recommendations
 

@@ -167,6 +167,20 @@ button:hover,
   color: var(--muted);
 }
 
+.recommendations {
+  padding: 0 20px 20px;
+}
+
+.recommendations ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--ink);
+}
+
+.recommendations li {
+  margin: 8px 0;
+}
+
 .table-wrap {
   overflow-x: auto;
 }

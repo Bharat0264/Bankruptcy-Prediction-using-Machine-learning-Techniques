@@ -1,0 +1,5 @@
+date,product,region,sales,profit,expense,customers
+2026-01-01,Alpha,East,10000,1400,8600,42
+2026-02-01,Alpha,East,9000,900,8100,39
+2026-03-01,Beta,West,7600,250,7350,34
+2026-04-01,Beta,West,7000,-100,7100,31

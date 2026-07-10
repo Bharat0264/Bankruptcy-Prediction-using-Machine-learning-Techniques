@@ -30,6 +30,10 @@ Returns prediction volume and risk-label counts from the local audit log.
 
 Compares a JSON or CSV scoring batch against the training baseline and returns the most shifted features.
 
+## POST `/api/analyze-any`
+
+Accepts a general company CSV and returns a best-effort business-risk analysis. This endpoint supports common sales, revenue, profit, expense, cash, debt, asset, liability, customer, and date columns. It does not require the strict 95-column bankruptcy schema, but confidence depends on the financial signals available.
+
 ## GET `/api/model-card`
 
 Returns the project model card as Markdown.

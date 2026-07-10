@@ -17,6 +17,7 @@ import pandas as pd
 from .audit import append_prediction_audit, audit_summary
 from .config import MAX_UPLOAD_BYTES, METADATA_PATH, REPORT_PATH, ROOT_DIR
 from .drift import drift_report
+from .generic_analyzer import analyze_company_csv
 from .inference import load_model, predict_frame
 from .train import main as train_main
 from .validation import schema_payload
@@ -67,6 +68,9 @@ class BankruptcyRiskHandler(SimpleHTTPRequestHandler):
             return
         if parsed.path == "/api/drift":
             self._drift()
+            return
+        if parsed.path == "/api/analyze-any":
+            self._analyze_any()
             return
         self.send_error(HTTPStatus.NOT_FOUND, "Unknown API route")
 
@@ -148,6 +152,13 @@ class BankruptcyRiskHandler(SimpleHTTPRequestHandler):
             df = self._request_to_dataframe()
             _, metadata = load_model()
             self._json(drift_report(df, metadata["feature_names"]))
+        except Exception as exc:
+            self._json({"error": str(exc)}, HTTPStatus.BAD_REQUEST)
+
+    def _analyze_any(self) -> None:
+        try:
+            df = self._request_to_dataframe()
+            self._json(analyze_company_csv(df))
         except Exception as exc:
             self._json({"error": str(exc)}, HTTPStatus.BAD_REQUEST)
 
